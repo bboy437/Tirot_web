@@ -1,0 +1,39 @@
+
+
+<div class="container">
+  <form class="mat-dialog-content"  #formControl="ngForm">
+    <h3 mat-dialog-title>{{strDialogStatus}}</h3>
+
+    <div class="form">
+      <mat-form-field >
+        <input matInput  readonly="true" class="form-control" type="number" [(ngModel)]="dataOrderItem.itemNo"  placeholder="Item No."  name="intitemNo"   >
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <div [formGroup] ="productionGroup" style="width: 100%;">
+        <mat-form-field color="accent">
+            <mat-select placeholder="Product" formControlName="productCtrl" required [(ngModel)]="intProductID"
+            (change)="ddlProduct_SelectIndexChange($event.value)"  name="Product">
+              <mat-option *ngFor="let objProduct of arrobjProduct" [value]="objProduct.id">
+                {{objProduct.productName}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+      </div>
+    </div>
+    <div class="form">
+      <div [formGroup] ="productionGroup" style="width: 100%;">
+        <mat-form-field >
+          <input matInput class="form-control" placeholder="Order Length (m)" type="number" formControlName="orderlengthCtrl" required [(ngModel)]="dataOrderItem.orderQty"  name="OrderQty">
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" [type]="submit" [disabled]="!disableBtn"  [mat-dialog-close]="dataOrderItem" (click)="confirmAdd()">OK</button>
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+
+</div>

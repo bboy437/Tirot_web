@@ -1,0 +1,13 @@
+<!-- <h6 class="mat-headline center-align">Machine History Status</h6>
+<div class="container" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center light">
+    <div class="item item-2" fxFlex="100%">
+    </div>
+    
+    <div class="item item-3">
+      <button mat-raised-button color="primary" (click)="btnSubmit()">Submit</button>
+    </div>
+
+  </div> -->
+
+<google-chart [data]="chartData" #timelinechart (chartReady)='ready($event)' (chartError)='error($event)' >
+</google-chart>

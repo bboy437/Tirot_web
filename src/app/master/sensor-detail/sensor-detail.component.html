@@ -1,0 +1,365 @@
+<div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+  <div fxFlex class="table-component-holder mat-elevation-z4">
+    <mat-toolbar class="table-header">
+      <h1 class="mat-headline center-align">Add Sensor</h1>
+    </mat-toolbar>
+
+    <div class="table-container">
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="5">
+          <div class="item item-1">
+            <button mat-raised-button color="primary" (click)="btnSaveClick()">
+              Save
+            </button>
+          </div>
+        </div>
+        <div fxFlex="40"></div>
+
+        <div fxFlex="5">
+          <div class="item item-1" [ngSwitch]="this.RowID">
+            <p *ngSwitchCase="'new'"></p>
+
+            <button
+              *ngSwitchDefault
+              mat-raised-button
+              color="accent"
+              (click)="btnDeleteClick()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <div fxFlex="40"></div>
+
+        <div fxFlex="5">
+          <div class="item item-1">
+            <button mat-raised-button color="warn" (click)="btnCloseClick()">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <!--Content -->
+      <div class="container" fxLayout="ro w" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="25">
+          <div>
+            <mat-form-field class="formfield-full-width">
+              <input
+                matInput
+                placeholder="Sensor Name"
+                [(ngModel)]="objRow.sensorName"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="5"></div>
+        <!--Content Set 1-->
+        <div fxFlex="20">
+          <div>
+            <mat-form-field class="formfield-full-width">
+              <input
+                matInput
+                placeholder="Location"
+                [(ngModel)]="objRow.sensorLocation"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="5"></div>
+
+        <div fxFlex="20">
+          <div>
+            <mat-form-field class="formfield-full-width">
+              <input
+                matInput
+                placeholder="Group Name"
+                [(ngModel)]="objRow.sensorGroupName"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="5"></div>
+
+        <div fxFlex="20">
+          <div>
+            <mat-form-field class="formfield-full-width">
+              <input
+                matInput
+                placeholder="Unit Name"
+                [(ngModel)]="objRow.sensorValueUnitName"
+                autocomplete="off"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxFlex="5"></div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <!-- <mat-label>Sensor value type</mat-label> -->
+            <mat-select
+              placeholder="Sensor value type"
+              [(ngModel)]="objRow.sensorValueType"
+            >
+              <mat-option value="1">ON/OFF</mat-option>
+              <mat-option value="2">State</mat-option>
+              <mat-option value="3">Value</mat-option>
+              <mat-option value="4">Text Massage</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="5"></div>
+
+        <div fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <!-- <mat-label>Data Retrieval Type</mat-label> -->
+            <mat-select
+              placeholder="Data Retrieval Type"
+              [(ngModel)]="objRow.dataRetrievalType"
+            >
+              <mat-option value="1">Null</mat-option>
+              <mat-option value="2">Pull</mat-option>
+              <mat-option value="3">Puss</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="5"></div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="20">
+          <mat-checkbox
+            [(ngModel)]="objRow.isMachineStatus"
+            [ngModelOptions]="{ standalone: true }"
+            >is Machine Status</mat-checkbox
+          >
+        </div>
+        <div fxFlex="5"></div>
+      </div>
+
+      <br />
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <!-- <mat-label>Sensor value type</mat-label> -->
+            <mat-select
+              placeholder="pull Interface Type"
+              [(ngModel)]="objRow.pullInterfaceType"
+              (change)="changePullInterfaceType($event.value)"
+            >
+              <mat-option value="1">No action</mat-option>
+              <mat-option value="2">Modbus TCP to Agend</mat-option>
+              <mat-option value="3">Modbus RTU to Agend</mat-option>
+              <mat-option value="4">Web service request</mat-option>
+              <mat-option value="5">TCP/IP Socket</mat-option>
+              <mat-option value="6">Direct query from DB</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--Content Set 2 Row 1-->
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div *ngIf="isShowDeviceIP" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Device IP"
+              [(ngModel)]="objRow.deviceIP"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowDeviceIP" fxFlex="5"></div>
+
+        <div *ngIf="isShowDevicePort" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Port"
+              [(ngModel)]="objRow.devicePort"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowDevicePort" fxFlex="5"></div>
+
+        <div *ngIf="isShowDeviceUnitId" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Device Unit ID"
+              [(ngModel)]="objRow.deviceUnitId"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowDeviceUnitId" fxFlex="5"></div>
+
+        <div *ngIf="isShowCommPortName" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Commport Name"
+              [(ngModel)]="objRow.commPortName"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowCommPortName" fxFlex="5"></div>
+
+        <div *ngIf="isShowBaudrate" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <mat-select placeholder="Baudrate" [(ngModel)]="objRow.baudrate">
+              <mat-option value="1200">1200</mat-option>
+              <mat-option value="2400">2400</mat-option>
+              <mat-option value="4200">4200</mat-option>
+              <mat-option value="9600">9600</mat-option>
+              <mat-option value="19200">19200</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowBaudrate" fxFlex="5"></div>
+
+        <div *ngIf="isShowParity" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <mat-select placeholder="Parity" [(ngModel)]="objRow.parity">
+              <mat-option value="0">None</mat-option>
+              <mat-option value="1">Odd</mat-option>
+              <mat-option value="2">Even</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowParity" fxFlex="5"></div>
+
+        <div *ngIf="isShowStopBit" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <mat-select placeholder="StopBit" [(ngModel)]="objRow.stopBit">
+              <mat-option value="0">None</mat-option>
+              <mat-option value="1">One</mat-option>
+              <mat-option value="15">One Point Five</mat-option>
+              <mat-option value="2">Two</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowStopBit" fxFlex="5"></div>
+
+        <div *ngIf="isShowInvokeCommand" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Invoke Command"
+              [(ngModel)]="objRow.invokeCommand"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowInvokeCommand" fxFlex="5"></div>
+
+        <div *ngIf="isShowConnectionString" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Connection String"
+              [(ngModel)]="objRow.connectionString"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowConnectionString" fxFlex="5"></div>
+
+        <div *ngIf="isShowTirotEdgeId" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <mat-select
+              placeholder="Tirot EdgeId"
+              [(ngModel)]="objRow.tirotEdgeId"
+            >
+              <mat-option value="0">Tirot Edge</mat-option>
+              <mat-option value="1">Get All</mat-option>
+              <mat-option value="2">Active</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowTirotEdgeId" fxFlex="5"></div>
+      </div>
+
+      <!--Content Set 2 Row 2-->
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div *ngIf="isSensorCondition" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Sensor Condition"
+              [(ngModel)]="objRow.sensorCondition"
+              [readonly]="true"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isSensorCondition" fxFlex="5"></div>
+
+        <div *ngIf="isShowTirotEdgeIdRow2" fxFlex="20">
+          <mat-form-field class="formfield-full-width">
+            <mat-select
+              placeholder="Tirot EdgeId"
+              [(ngModel)]="objRow.tirotEdgeId"
+            >
+              <mat-option value="0">Tirot Edge</mat-option>
+              <mat-option value="1">Get All</mat-option>
+              <mat-option value="2">Active</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="isShowTirotEdgeIdRow2" fxFlex="5"></div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div *ngIf="isSensorExpression" fxFlex="50">
+          <mat-form-field class="formfield-full-width">
+            <input
+              matInput
+              placeholder="Sensor Expression"
+              [(ngModel)]="objRow.sensorExpression"
+              [readonly]="true"
+              autocomplete="off"
+              (click)="btnClickSensorExpression()"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isSensorExpression" fxFlex="5"></div>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <mat-input-container fxFlex="50">
+          <textarea
+            matInput
+            [(ngModel)]="objRow.remark"
+            placeholder="Remark"
+            autocomplete="off"
+          >
+          </textarea>
+        </mat-input-container>
+      </div>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="20">
+          <mat-checkbox
+            [(ngModel)]="objRow.inActivated"
+            [ngModelOptions]="{ standalone: true }"
+            >In Active</mat-checkbox
+          >
+        </div>
+        <div fxFlex="5"></div>
+      </div>
+    </div>
+  </div>
+</div>

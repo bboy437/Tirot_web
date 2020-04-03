@@ -1,0 +1,230 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="100">
+        <div fxFlex class="mat-elevation-z4" style="padding: 10px; ">
+            <google-chart [data]="ChartData" #linechart (chartReady)='ready($event)' (chartError)='error($event)'></google-chart>
+        </div>
+    </div>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="30">
+        <div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+            <div fxFlex class="table-component-holder mat-elevation-z4">
+                <mat-toolbar class="table-header">
+                    <h1 class="mat-headline center-align">Process Data</h1>
+                </mat-toolbar>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td align="right">
+                                    USL
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.usl}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    LSL
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.lsl}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    AVG.
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.asl}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div style="background-color: #5c6bc0;" fxFlex="1px"></div>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td align="right">
+                                    Mean
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.mean | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    Data
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.count }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    stdDev
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.stdDev | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex="30">
+        <div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+            <div fxFlex class="table-component-holder mat-elevation-z4">
+                <mat-toolbar class="table-header">
+                    <h1 class="mat-headline center-align">Process Capability</h1>
+                </mat-toolbar>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td align="right">
+                                    Cp
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.cp | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    Cpu
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.cpu | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr style="height: 18px;">
+                                <td align="right">
+
+                                </td>
+                                <td align="left">
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div style="background-color: #5c6bc0;" fxFlex="1px"></div>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td align="right">
+                                    Cpl
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.cpl | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    Cpk
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.cpk | number:'1.2-2'}}
+                                </td>
+                            </tr>
+                            <tr style="height: 18px;">
+                                <td align="right">
+
+                                </td>
+                                <td align="left">
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex="40">
+        <div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+            <div fxFlex class="table-component-holder mat-elevation-z4">
+                <mat-toolbar class="table-header">
+                    <h1 class="mat-headline center-align">Performance</h1>
+                </mat-toolbar>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    %NG > USL
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.percentNgGtUSL | number:'1.4-4'}}%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    %NG < LSL </td> <td align="left">
+                                        = {{objDataHistogramWeigthAnalysis.percentNgLtLSL | number:'1.4-4'}}%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    %NG
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.percentNg | number:'1.4-4'}}%
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div style="background-color: #5c6bc0;" fxFlex="1px"></div>
+                    <div fxFlex="50">
+
+                        <table width=100% cellpadding=0 cellspacing=0>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    DPPM > USL
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.dppM_GtUSL | number : '1.0-0'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    DPPM < LSL </td> <td align="left">
+                                        = {{objDataHistogramWeigthAnalysis.dppM_LtLSL | number:'1.0-0'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 10px" align="left">
+                                    DPPM
+                                </td>
+                                <td align="left">
+                                    = {{objDataHistogramWeigthAnalysis.dppm | number:'1.0-0'}}
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

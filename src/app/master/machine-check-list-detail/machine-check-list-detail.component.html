@@ -1,0 +1,219 @@
+<div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+
+  <div fxFlex class="table-component-holder mat-elevation-z4">
+    <mat-toolbar class="table-header">
+      <h1 class="mat-headline center-align">Machine Check List Template Detail</h1>
+    </mat-toolbar>
+
+    <div class="table-container">
+
+      <table width="100%">
+        <tr>
+          <td style="width: 90%;">
+            <button mat-raised-button color="primary" (click)="btnSaveClick()">Save</button>
+          </td>
+          <td style="width: 10%; ">
+            <button mat-raised-button color="accent" (click)="btnCloseClick()">Close</button>
+          </td>
+        </tr>
+
+      </table>
+
+
+      <br>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="45">
+          <mat-form-field class="example-full-width">
+            <mat-select input placeholder="Machine" [(ngModel)]="MachineID" [ngModelOptions]="{standalone: true}">
+              <mat-option *ngFor="let objMachine of arrobjMachine" [value]="objMachine.id">
+                {{objMachine.machineName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="10"></div>
+        <div fxFlex="45">
+
+        </div>
+      </div>
+
+
+
+      <form class="example-form">
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+          <div fxFlex="45">
+            <mat-form-field class="example-full-width">
+              <!-- <mat-select placeholder="Group Order" [(ngModel)]="objRow.groupOrder" name="groupOrder" >
+                <mat-option value=1>เช็คความพร้อมของเครื่องจักร</mat-option>
+                <mat-option value=2>เช็คสภาพการทำงานของ EPC</mat-option>
+                <mat-option value=3>เช็คความสะอาดเครื่องจักรก่อนเดินเครื่อง</mat-option>
+              </mat-select> -->
+              <input matInput maxlength="100" placeholder="Group Order" [(ngModel)]="GroupOrderName" readonly="true"
+                [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+          </div>
+          <div fxFlex="10"></div>
+          <div fxFlex="45">
+
+          </div>
+        </div>
+
+
+
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+          <div fxFlex="45">
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="Column In Line" [(value)]="objRow.noColumnInLine">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex="10"></div>
+          <div fxFlex="45">
+
+          </div>
+        </div>
+
+        <div [ngSwitch]="objRow.noColumnInLine">
+          <div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+            <div fxFlex class="table-component-holder mat-elevation-z4">
+              <mat-toolbar class="table-header">
+                <h1 class="mat-headline center-align">Column 1</h1>
+              </mat-toolbar>
+              <div class="table-container">
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                  <div fxFlex="70">
+                    <mat-form-field class="example-full-width">
+                      <input matInput maxlength="100" placeholder="Caption" [(ngModel)]="objRow.captionCol1"
+                        [ngModelOptions]="{standalone: true}">
+                    </mat-form-field>
+
+                  </div>
+                  <div fxFlex="10"></div>
+                  <div fxFlex="20">
+                  </div>
+                </div>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                  <div fxFlex="45">
+                    <mat-form-field class="example-full-width">
+                      <mat-select placeholder="DataType" [(value)]="objRow.dataTypeCol1" (selectionChange)="dataTypeCol1Change($event.value)" >
+                        <mat-option value=0>Value & OK/NG</mat-option>
+                        <mat-option value=1>Value</mat-option>
+                        <mat-option value=2>OK/NG</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex="10"></div>
+                  <div fxFlex="45">
+
+                  </div>
+                </div>
+
+
+                <div *ngIf="objRow.dataTypeCol1 != 2;">
+                  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="20">
+                      <mat-form-field class="example-full-width">
+                        <input matInput maxlength="100" placeholder="Min Value" [(ngModel)]="objRow.stdMinValue1"
+                          [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxFlex="20">
+                      <mat-form-field class="example-full-width">
+                        <input matInput maxlength="100" placeholder="Max Value" [(ngModel)]="objRow.stdMaxValue1"
+                          [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+
+                    </div>
+                    <div fxFlex="10"></div>
+                    <div fxFlex="45">
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div *ngSwitchCase=2>
+            <div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+              <div fxFlex class="table-component-holder mat-elevation-z4">
+                <mat-toolbar class="table-header">
+                  <h1 class="mat-headline center-align">Column 2</h1>
+                </mat-toolbar>
+                <div class="table-container">
+
+                  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="70">
+                      <mat-form-field class="example-full-width">
+                        <input matInput maxlength="100" placeholder="Caption" [(ngModel)]="objRow.captionCol2"
+                          [ngModelOptions]="{standalone: true}">
+                      </mat-form-field>
+
+                    </div>
+                    <div fxFlex="10"></div>
+                    <div fxFlex="20">
+                    </div>
+                  </div>
+                  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                    <div fxFlex="45">
+                      <mat-form-field class="example-full-width">
+                        <mat-select placeholder="DataType" [(value)]="objRow.dataTypeCol2" (selectionChange)="dataTypeCol2Change($event.value)" >
+                          <mat-option value=0>Value & OK/NG</mat-option>
+                          <mat-option value=1>Value</mat-option>
+                          <mat-option value=2>OK/NG</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div fxFlex="10"></div>
+                    <div fxFlex="45">
+
+                    </div>
+                  </div>
+                  <div *ngIf="objRow.dataTypeCol2 != 2;">
+                    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                      <div fxFlex="20">
+                        <mat-form-field class="example-full-width">
+                          <input matInput maxlength="100" placeholder="Min Value" [(ngModel)]="objRow.stdMinValue2"
+                            [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+
+                      </div>
+                      <div fxFlex="5"></div>
+                      <div fxFlex="20">
+                        <mat-form-field class="example-full-width">
+                          <input matInput maxlength="100" placeholder="Max Value" [(ngModel)]="objRow.stdMaxValue2"
+                            [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+
+                      </div>
+                      <div fxFlex="10"></div>
+                      <div fxFlex="45">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+
+  </div>
+
+
+</div>

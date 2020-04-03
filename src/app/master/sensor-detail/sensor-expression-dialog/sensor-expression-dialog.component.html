@@ -1,0 +1,366 @@
+<div class="container">
+  <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div>
+      <mat-icon>label_important</mat-icon
+      >3+5*3-(5-2)+<mat-icon>label_important</mat-icon>25
+    </div>
+    <div></div>
+  </div> -->
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-label *ngFor="let obj of dataArr">
+      <span [ngSwitch]="obj.category">
+        <h3 *ngSwitchCase="'S'">
+          <mat-icon>label_important</mat-icon>{{ obj.text }}
+        </h3>
+        <h3 *ngSwitchCase="'R'"><mat-icon>home</mat-icon>{{ obj.text }}</h3>
+        <h3 *ngSwitchDefault>{{ obj.text }}</h3>
+      </span>
+    </mat-label>
+  </div>
+
+  <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-label *ngFor="let obj of dataArr">
+      {{ obj.category }}
+      <span [ngSwitch]="{{obj.category}">
+        <p *ngSwitchCase="'S'">1111</p>
+        <p *ngSwitchCase="'Text'">buddddddd</p>
+        <p *ngSwitchCase="'R'">2222</p>
+        <p *ngSwitchCase="a">3333</p>
+        <p *ngSwitchDefault>4444</p>
+      </span>
+    </mat-label>
+  </div> -->
+
+  <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <mat-label *ngFor="let obj of dataArr">
+        {{ obj.category }}
+        <span [ngSwitch]="{{obj.category}}">
+          <p *ngSwitchCase="Text">1111</p>
+          <p *ngSwitchCase="S">2222</p>
+          <p *ngSwitchCase="R">3333</p>
+          <p *ngSwitchCase="a">3333</p>
+          <p *ngSwitchDefault>4444</p>
+        </span>
+      </mat-label>
+    </div> -->
+
+  <!-- 
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-label *ngFor="let obj of dataArr">
+      <ng-container *ngIf="true; then thenTemplate; else elseTemplate">
+        111111111
+      </ng-container>
+      <ng-template #thenTemplate> 22 </ng-template>
+      <ng-template #elseTemplate> 33 </ng-template>
+    </mat-label>
+  </div> -->
+
+  <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-label *ngFor="let obj of dataArr">
+      <ng-container
+        *ngIf="obj.is; then thenTemplate; else elseTemplate"
+      ></ng-container>
+      <ng-template #thenTemplate>
+        <mat-icon>label_important</mat-icon>obj.text</ng-template
+      >
+    </mat-label>
+  </div> -->
+
+  <!-- <ng-template #elseTemplate> {{ obj.id }} </ng-template>
+      <mat-icon>label_important</mat-icon>3+ ( 5*3 )*(
+      <mat-icon>label_important</mat-icon>17+10 ) -->
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-form-field class="formfield-full-width">
+      <input
+        #inputTextExpression
+        matInput
+        autofocus
+        placeholder="Input formula"
+        [(ngModel)]="formulaText"
+        autocomplete="off"
+        (click)="onClickInputFormula($event)"
+        (keyup)="onkeyupInputFormula($event)"
+        (mousedown)="onmousedown()"
+        (mouseup)="mouseup()"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('1')"
+    >
+      1
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('2')"
+    >
+      2
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('3')"
+    >
+      3
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('4')"
+    >
+      4
+    </button>
+  </div>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('5')"
+    >
+      5
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('6')"
+    >
+      6
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('7')"
+    >
+      7
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('8')"
+    >
+      8
+    </button>
+  </div>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('9')"
+    >
+      9
+    </button>
+    <button
+      class="button-operator"
+      mat-raised-button
+      color="warn"
+      (click)="onClickNumber('0')"
+    >
+      0
+    </button>
+  </div>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Operator </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('+')"
+      >
+        +
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('-')"
+      >
+        -
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('*')"
+      >
+        *
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('/')"
+      >
+        /
+      </button>
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('%')"
+      >
+        %
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="primary"
+        (click)="onclickOperator('()')"
+      >
+        ()
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Sensor Id </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S1')"
+      >
+        S1
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S2')"
+      >
+        S2
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S3')"
+      >
+        S3
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S4')"
+      >
+        S4
+      </button>
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S10')"
+      >
+        S10
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S11')"
+      >
+        S11
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S12')"
+      >
+        S12
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S13')"
+      >
+        S13
+      </button>
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S14')"
+      >
+        S14
+      </button>
+      <button
+        class="button-operator"
+        mat-raised-button
+        color="accent"
+        (click)="onClickSensorValue('S15')"
+      >
+        S15
+      </button>
+    </div>
+  </mat-expansion-panel>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <!-- <button mat-button [mat-dialog-close]="formulaText" cdkFocusInitial>
+      Ok
+    </button> -->
+    <button mat-button (click)="onClickOK()" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onNoClick()">Cancle</button>
+  </div>
+</div>
+
+<!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-form-field class="formfield-full-width">
+      <input
+        #inputTextExpression
+        matInput
+        autofocus
+        placeholder="Input formula"
+        [(ngModel)]="formulaText"
+        autocomplete="off"
+        (click)="onClickInputFormula($event)"
+        (keyup)="onkeyupInputFormula($event)"
+        (mousedown)="onmousedown()"
+        (mouseup)="mouseup()"
+      />
+    </mat-form-field>
+  </div>
+  <div fxFlex="5"></div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <mat-form-field class="formfield-full-width">
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <button mat-button [mat-dialog-close]="formulaText" cdkFocusInitial>
+          Ok
+        </button>
+        <button mat-button (click)="onNoClick()">Cancle</button>
+      </div>
+    </mat-form-field>
+  </div>
+  <div fxFlex="5"></div> -->

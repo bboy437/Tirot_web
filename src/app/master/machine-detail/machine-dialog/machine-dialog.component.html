@@ -1,0 +1,61 @@
+
+<div class="container">
+    <form class="mat-dialog-content"  #formControl="ngForm">
+
+
+            <div class="form">
+                    <div [formGroup] ="machineFormGroup">
+                        <mat-form-field color="accent">
+                            <mat-select  placeholder="Sensor Name" formControlName="sensornameCtrl" required [(ngModel)]="dataSensor.sensorName" name="Sensor Name">
+                              <mat-option *ngFor="let objSensorName of arrobjSensorName" [value]="objSensorName">
+                                {{objSensorName}}
+                              </mat-option>
+                            </mat-select>
+                            <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                          </mat-form-field>
+                    </div>
+            </div>
+            <div class="form">
+                    <div [formGroup] ="machineFormGroup">
+                        <mat-form-field color="accent">
+                            <mat-select  placeholder="Sensor Location" formControlName="SensorlocationCtrl" required [(ngModel)]="dataSensor.sensorLocation" name="Sensor Location">
+                              <mat-option *ngFor="let objSensorLocation of arrobjSensorLocation" [value]="objSensorLocation">
+                                {{objSensorLocation}}
+                              </mat-option>
+                            </mat-select>
+                            <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                          </mat-form-field>
+                    </div>
+            </div>
+            <div class="form">
+                <div [formGroup] ="machineFormGroup">
+                    <mat-form-field color="accent">
+                        <mat-select  placeholder="Sensor GroupName" formControlName="sensorgroupnameCtrl" required [(ngModel)]="dataSensor.sensorGroupName" name="Sensor GroupName">
+                          <mat-option *ngFor="let objSensorGroupName of arrobjSensorGroupName" [value]="objSensorGroupName">
+                            {{objSensorGroupName}}
+                          </mat-option>
+                        </mat-select>
+                        <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="form">
+                    <div [formGroup] ="machineFormGroup">
+                        <mat-form-field color="accent">
+                            <mat-select  placeholder="Sensor Value UnitName" formControlName="sensorvalueunitnameCtrl" required [(ngModel)]="dataSensor.sensorValueUnitName" name="Sensor Value UnitName">
+                              <mat-option *ngFor="let objSensorValueUnitName of arrobjSensorValueUnitName" [value]="objSensorValueUnitName">
+                                {{objSensorValueUnitName}}
+                              </mat-option>
+                            </mat-select>
+                            <!-- <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error> -->
+                          </mat-form-field>
+                    </div>
+            </div>
+
+                            <!--<div mat-dialog-actions>
+                    <button mat-raised-button color="primary" [type]="submit" [disabled]="!disableBtn" [mat-dialog-close]="dataOperationInstruction" (click)="confirmAdd()">OK</button>
+                    <button mat-raised-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div> -->
+    </form>
+</div>
+  

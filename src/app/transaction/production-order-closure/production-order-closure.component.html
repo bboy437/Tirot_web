@@ -1,0 +1,157 @@
+<div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+  <div fxFlex class="table-component-holder mat-elevation-z4">
+    <mat-toolbar class="table-header">
+      <h1 class="mat-headline center-align">Production Order Closure</h1>
+    </mat-toolbar>
+  </div>
+
+  <div class="table-container">
+    <!--Content -->
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <div fxFlex="10">
+        <div>
+          <mat-slide-toggle
+            #SlideToggerDelivery
+            class="width"
+            [checked]="isDelivery"
+            (change)="onchangeDelivery($event.checked)"
+          >
+            Delivery
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div fxFlex="5"></div>
+      <!--Content Set 1-->
+      <div fxFlex="10">
+        <mat-form-field class="formfield-full-width">
+          <mat-select
+            #SelectMonth
+            placeholder="Month"
+            [(ngModel)]="numMonthSelected"
+            (change)="onMonthChange($event.value)"
+            [disabled]="isOpenComponentCondition"
+          >
+            <mat-option *ngFor="let month of arrMonth" [value]="month">
+              {{ month }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="5"></div>
+
+      <div fxFlex="10">
+        <mat-form-field class="formfield-full-width">
+          <mat-select
+            #SelectYear
+            placeholder="SelectYear"
+            [(ngModel)]="numYearSelected"
+            (change)="onYearChange($event.value)"
+            [disabled]="isOpenComponentCondition"
+          >
+            <mat-option *ngFor="let year of arrYear" [value]="year">
+              {{ year }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="5"></div>
+
+      <div fxFlex="9">
+        <mat-form-field style="text-align: right;width: 70px">
+          <input
+            #inputTolerances
+            matInput
+            placeholder="Tolerances (%)"
+            autocomplete="off"
+            [(ngModel)]="numTolerances"
+            [disabled]="isOpenComponentCondition"
+            type="number"
+            max="100"
+            autocomplete="off"
+            (input)="changeTolerances($event.target.value)"
+            (focusout)="onFocusOutTolerances()"
+          />
+        </mat-form-field>
+      </div>
+      <div fxFlex="4"></div>
+    </div>
+  </div>
+
+  <div fxFlex class="table-component-holder mat-elevation-z4">
+    <mat-table
+      [dataSource]="dataSource1"
+      matSortActive="productionOrderId"
+      matSortDirection="asc"
+      matSortDisableClear
+      matSort
+    >
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef fxFlex="35px"> </mat-header-cell>
+        <mat-cell *matCellDef="let row" fxFlex="35px">
+          <mat-checkbox
+            (change)="onCheckbox($event.checked, row.productionOrderId)"
+            [(ngModel)]="row.select"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="productionOrderNo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Order No</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.productionOrderNo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="madeTo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Made to</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.madeTo }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Date</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.deliveryDate | date: "dd/MM/yyyy"}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalOrderQty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Order Qty</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.totalOrderQty }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalFGQty">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >FG Qty</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.totalFGQty }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="percentFG">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>%FG</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.percentFG | number: '1.2-2' }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="onRowClicked(row)"
+      ></mat-row>
+    </mat-table>
+
+    <mat-paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 25]">
+    </mat-paginator>
+  </div>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+    <div fxFlex="40"></div>
+    <div fxFlex="15">
+      <div class="item item-1">
+        <button mat-raised-button color="accent" (click)="btnDeleteClick()">
+          Close Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+.table-container {
+    padding: 5px 15px 15px 15px;
+}
+.table-component-holder {
+    border: 1px solid #327ebd;
+    background-color: white;
+}
+
+  
+.readonly-wrapper {
+  width: 100%;
+  cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+  pointer-events: none;
+}
+
+  .example-full-width {
+    width: 100%;
+  }
+
+  .styled-select select {
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0.1;
+    border-radius: 0;
+    height: 34px;
+    }

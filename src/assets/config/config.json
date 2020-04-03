@@ -1,0 +1,6 @@
+{
+  "ServerApiUrl": "http://192.168.0.28/tirotapi/",
+  "ServerApiMQUrl": "http://192.168.0.28/tirotapimq/sensordataHub",
+  "ReportServerUrl": "http://192.168.0.25:50353/en-us/reports/Tirot/",
+  "MachineChecklistAllowEdit": "true"
+}

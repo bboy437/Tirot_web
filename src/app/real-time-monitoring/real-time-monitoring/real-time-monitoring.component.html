@@ -1,0 +1,669 @@
+<div fxLayout="column" class="components-container-gt-xs" fxLayoutGap="20px">
+
+
+  <div fxFlex class="table-component-holder mat-elevation-z4">
+    <mat-toolbar class="table-header">
+      <table width=100% cellpadding=0 cellspacing=0>
+        <tr>
+          <td style="width: 70%;">
+            <h1 class="mat-headline center-align">Real-Time Monitoring</h1>
+          </td>
+          <td style="width: 30%;">
+            <mat-form-field class="no-line">
+              <mat-select class="mat-select-Machine" [(value)]="MachineID"
+              (change)="ddlMachine_SelectIndexChange($event.value)" >
+                <mat-option *ngFor="let objMachine of arrobjMachine" [value]="objMachine.id">
+                  {{objMachine.machineName}}
+                </mat-option>
+                
+                <!-- <mat-option [value]="1" >Test</mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+    </mat-toolbar>
+
+
+    <div class="container" style="padding-top: 5px" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <div fxFlex="5px"></div>
+      <div fxFlex="100">
+
+        <div fxFlex class=" mat-elevation-z4">
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Job No.
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{jobOrderNo}}
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Product
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{productName}}
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Process
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{Process}}
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Roll No.
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{rollNo}}
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Shift
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{shift}}
+              </div>
+            </div>
+          </div>
+
+          <div fxLayout="row" class="dashcard mat-elevation-z4" style="height: 40px">
+            <div fxFlex="40" fxLayout="row" fxLayoutAlign="left center" style="background-color: #81C784;padding-left: 5px;">
+              <div style="color: white;font-size: 20px">
+                Start Time
+              </div>
+            </div>
+            <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center" style="background-color: #66BB6A">
+              <div style="color: white;font-size: 20px">
+                {{startProductionTime | date : "HH:mm"}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div fxFlex="10px"></div>
+      <div fxFlex="720px">
+
+        <!-- <mat-card class="mat-card-realtime" style="background-image: url(../../../assets/images/Machine/Realtime_01_1.png); width:700px;height: 200px;"> -->
+        <div fxFlex class="mat-elevation-z4" style="background-color: rgb(215, 226, 250)">
+          <div style="background-image: url(assets/images/Machine/Realtime_01.png); width:700px;height: 230px; ">
+            <table style="width: 100%; padding: 0px;">
+              <tr>
+                <td style="width:10%">
+                </td>
+                <td style="width:70px">
+                  <mat-label>Knife Left</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" [(ngModel)]="KnifeLevelL" type="text">
+                </td>
+                <td style="width:5px">
+                  <mat-label>mm.</mat-label>
+                </td>
+                <td style="width:5%">
+
+                </td>
+                <td style="width:85px">
+                  <mat-label>Knife Right</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" [(ngModel)]="KnifeLevelR" type="text">
+                </td>
+                <td style="width:5px">
+                  <mat-label>mm.</mat-label>
+                </td>
+                <td style="width:40%">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="9" style="width:100%; height:15px;">
+
+                </td>
+              </tr>
+            </table>
+            <table style="width: 100%; padding: 0px;">
+              <tr>
+                <td style="width:3%">
+                </td>
+                <td style="width:70px">
+                  <mat-label>Length IN</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" type="text">
+                  <mat-label>M</mat-label>
+                </td>
+                <td style="width:95px">
+                  <mat-label>แรงดันลูกกลิ้ง</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" type="text">
+                </td>
+                <td style="width:50%">
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6" style="width:100%; height:100px;">
+
+                </td>
+              </tr>
+            </table>
+            <table style="width: 100%; padding: 0px;">
+              <tr>
+                <td style="width:200px">
+                </td>
+                <td style="width:50px">
+                  <mat-label>Motor</mat-label>
+                </td>
+                <td>
+                  <input [ngClass]="{'input-moto-on' : Motor === 1
+                  ,'input-moto-off' : Motor === 0 }"
+                    type="text">
+
+                </td>
+                <td style="width:95px">
+                </td>
+                <td>
+                </td>
+                <td style="width:30%">
+                </td>
+              </tr>
+            </table>
+            <table style="width: 100%; padding: 0px;">
+              <tr>
+                <td style="width:60px">
+                </td>
+                <td style="width:80px">
+                  <mat-label>ปั้ม Tension</mat-label>
+                </td>
+                <td>
+                  <input class="input-tension-ok" [(ngModel)]="TensionControl" type="text">
+                  <mat-label>Bar</mat-label>
+                </td>
+
+                <td style="width:50px">
+                  <mat-label>Speed</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" type="text">
+                  <mat-label>m/min</mat-label>
+                </td>
+
+                <td style="width:110px">
+                  <mat-label>Width fabric in</mat-label>
+                </td>
+                <td>
+                  <input class="input-knife" [(ngModel)]="WidthFabricIn" type="text">
+                  <mat-label>CM</mat-label>
+                </td>
+
+
+              </tr>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <div fxFlex="5px"></div>
+    </div>
+
+    <div class="container" fxLayoutAlign="right center" style="padding-top: 10px; padding-bottom: 20px; " fxLayout="row"
+      fxLayout.xs="column" fxFlexFill>
+      <div fxFlex="5px">
+
+
+      </div>
+
+      <div fxFlex="100">
+        <div fxFlex fxLayoutAlign="left center" class="mat-elevation-z4" style="background-color: rgb(215, 226, 250);height:315px;">
+          <div fxLayoutAlign="center center" fxFlex="80px">
+            <table style="width: 100%; padding: 0px; border-spacing: 0px;">
+              <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td>
+                  <input [ngClass]="{'tower-lamp-green' : MachineStatus === 1
+                                      ,'tower-lamp-green-off' : MachineStatus !== 1 }"
+                    readonly="true" type="text">
+                </td>
+                <td style="width: 50%;">
+
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td>
+                  <input [ngClass]="{'tower-lamp-yellow' : MachineStatus === 2
+                    ,'tower-lamp-yellow-off' : MachineStatus !== 2 }"
+                    readonly="true" type="text">
+                </td>
+                <td style="width: 50%;">
+
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 50%;">
+
+                </td>
+                <td>
+                  <input [ngClass]="{'tower-lamp-red' : MachineStatus === 0
+                    ,'tower-lamp-red-off' : MachineStatus !== 0 }"
+                    readonly="true" type="text">
+                </td>
+                <td style="width: 50%;">
+
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div style="background-image: url(assets/images/Machine/Realtime_03.png); width:1000px;height: 315px; ">
+            <table style="width: 100%; padding: 0px;">
+              <tr style="height: 12px">
+                <td style="width:110px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:110px">
+
+                </td>
+                <td style="width:50px">
+                  <mat-label>Oven#1</mat-label>
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+                  <mat-label>Oven#2</mat-label>
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+                  <mat-label>Oven#3</mat-label>
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+                  <mat-label>Oven#4</mat-label>
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+                  <mat-label>Oven#5</mat-label>
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr style="height: 15px">
+                <td style="width:110px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:50px">
+
+                </td>
+                <td style="width:30px">
+
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:110px">
+                  <mat-label>Temp</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input [(ngModel)]="TempInOwen1" class="input-knife" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input [(ngModel)]="TempInOwen2" class="input-knife" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input [(ngModel)]="TempInOwen3" class="input-knife" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input [(ngModel)]="TempInOwen4" class="input-knife" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input [(ngModel)]="TempInOwen5" class="input-knife" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:110px">
+                  <mat-label>Fan Speed Left</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="LeftFanSpeedInOwen1" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="LeftFanSpeedInOwen2" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="LeftFanSpeedInOwen3" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="LeftFanSpeedInOwen4" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="LeftFanSpeedInOwen5" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:110px">
+                  <mat-label>Fan Speed Right</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="RightFanSpeedInOwen1" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="RightFanSpeedInOwen2" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="RightFanSpeedInOwen3" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="RightFanSpeedInOwen4" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="RightFanSpeedInOwen5" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+              <tr style="height: 100px;">
+                <td colspan="11">
+
+                </td>
+                <td style="width:420px">
+                  <table style="width: 100%; padding: 0px;height: 100px;">
+                    <tr>
+                      <td style="width:5px"></td>
+                      <td style="width:110px">
+                        <mat-label>Width fabric Out</mat-label>
+                      </td>
+                      <td style="width:50px">
+                        <input class="input-knife" [(ngModel)]="WidthFabricOut" type="text">
+                      </td>
+                      <td>
+                        <mat-label>CM</mat-label>
+                      </td>
+                    </tr>
+                    <tr style="height:75px;">
+                      <td colspan="2">
+
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:110px">
+                  <mat-label>Temp Exh</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="TempinExhaustDuct1" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="TempinExhaustDuct2" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="TempinExhaustDuct3" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="TempinExhaustDuct4" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="TempinExhaustDuct5" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>C</mat-label>
+                </td>
+                <td style="width:420px">
+                  <table style="width: 100%; padding: 0px;">
+                    <tr>
+                      <td style="width:55px">
+
+                      </td>
+                      <td style="width:80px">
+                        <mat-label>Main Motor</mat-label>
+                      </td>
+                      <td style="width:50px">
+                        <input [ngClass]="{'input-moto-on' : MainMotor === 1
+                        ,'input-moto-off' : MainMotor === 0 }"
+                          type="text">
+                      </td>
+                      <td style="width:50px">
+
+                      </td>
+                      <td style="width:80px">
+                        <mat-label>Length Out</mat-label>
+                      </td>
+                      <td style="width:50px">
+                        <input class="input-knife" type="text">
+                      </td>
+                      <td>
+                        <mat-label>M</mat-label>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="width:110px">
+                  <mat-label>Speed Exh</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="SpeedExhaustFan1" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="SpeedExhaustFan2" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="SpeedExhaustFan3" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="SpeedExhaustFan4" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:50px">
+                  <input class="input-knife" [(ngModel)]="SpeedExhaustFan5" type="text">
+                </td>
+                <td style="width:30px">
+                  <mat-label>Hz</mat-label>
+                </td>
+                <td style="width:420px">
+
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <img src="../../../assets/images/Machine/Realtime.png" style="width:1050px;height: 400px; background-color: rgba(49, 250, 9, 0.788)"
+      alt="image"> -->
+
+  </div>
+</div>

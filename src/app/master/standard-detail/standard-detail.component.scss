@@ -1,0 +1,44 @@
+
+.table-container {
+    padding: 5px 15px 15px 15px;
+}
+.table-component-holder {
+    border: 1px solid #327ebd;
+    background-color: white;
+}
+
+.mat-cell, .mat-header-cell
+{
+  overflow: visible !important;
+}
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .table-col-width {
+    width: 90%;
+  }
+
+  .inputright { text-align: right }
+  
+
+  .styled-select select {
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0.1;
+    border-radius: 0;
+    height: 34px;
+    }
+    
+    .colorIn {
+    background-color: rgb(219, 11, 46);
+    color: white
+
+    }
+  
+
+   

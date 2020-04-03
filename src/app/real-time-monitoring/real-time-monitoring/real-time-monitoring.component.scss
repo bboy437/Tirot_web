@@ -1,0 +1,136 @@
+.mat-card-jobdetail {
+    // background: rgb(117, 238, 163);
+    padding : 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.mat-card-realtime {
+    padding : 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    height: 250px;
+    background:  rgb(216, 216, 235);
+}
+
+.input-knife {
+    width: 40px;
+    text-align: center;
+    border-color: black;
+}
+
+.tower-lamp {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: rgb(206, 206, 206);
+}
+
+.tower-lamp-red {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: red;
+}
+
+.tower-lamp-yellow {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: yellow;
+}
+
+.tower-lamp-green {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: rgb(17, 226, 17);
+}
+
+.tower-lamp-red-off {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: rgb(75, 10, 10);
+}
+
+.tower-lamp-yellow-off {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: rgb(75, 75, 20);
+}
+
+.tower-lamp-green-off {
+    width: 40px;
+    height: 55px;
+    text-align: center;
+    border-color: black;
+    background-color: rgb(10, 78, 10);
+}
+
+
+
+.input-tension-ok {
+    width: 40px;
+    text-align: center;
+    border-color: black;
+    background: rgba(72, 255, 0, 0.712);
+}
+
+.input-tension-ng {
+    width: 40px;
+    text-align: center;
+    border-color: black;
+    background: rgba(255, 0, 0, 0.712);
+}
+
+.input-moto-off {
+    width: 35px;
+    text-align: center;
+    background: rgb(255, 0, 0);
+    border-radius: 50px;
+}
+
+.input-moto-on {
+    width: 35px;
+    text-align: center;
+    background: rgb(72, 255, 0);
+    border-radius: 50px;
+}
+
+.machine-on {
+    // background: rgba(49, 250, 9, 0.788);
+    background: rgb(255, 26, 26);
+}
+.mat-select-Machine{
+    
+    ::ng-deep .mat-select-value-text {
+        font-size: 12pt;
+        color: white;
+      }
+    
+    ::ng-deep .mat-select-arrow
+      {
+        color: white;
+      }
+
+    
+}
+
+::ng-deep .no-line .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .no-line.mat-form-field{
+    text-align: right;
+  }
+

@@ -1,0 +1,26 @@
+.table-container {
+    padding: 5px 15px 15px 15px;
+}
+
+.mat-select-Machine{
+    
+    ::ng-deep .mat-select-value-text {
+        font-size: 12pt;
+        color: white;
+      }
+    
+    ::ng-deep .mat-select-arrow
+      {
+        color: white;
+      }
+
+    
+}
+
+::ng-deep .no-line .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .no-line.mat-form-field{
+    text-align: right;
+  }
